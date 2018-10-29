@@ -1,0 +1,22 @@
+table, th, tr, td {
+	border: 1px solid black;
+}
+
+table {
+	float:left;
+	border-collapse:collapse;
+}
+
+#myCanvas {
+	border:1px solid #000000; 
+	float:right
+}
+
+div {
+	text-align:center;
+}
+
+input
+{
+    width: 117px;
+}

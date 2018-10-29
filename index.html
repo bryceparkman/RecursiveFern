@@ -1,0 +1,208 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>Fern Generator</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <table>
+	<tr>
+		<th></th>
+		<th>a</th>
+		<th>b</th>
+		<th>c</th>
+		<th>d</th>
+		<th>f</th>
+	</tr>
+	<tr>
+		<td>f1</td>
+		<td>
+			<div id="f1aV">0</div>
+			<input id="f1a" type="range" value="0" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f1bV">0</div>
+			<input id="f1b" type="range" value="0" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f1cV">0</div>
+			<input id="f1c" type="range" value="0" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f1dV">0.16</div>
+			<input id="f1d" type="range" value="16" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f1fV">0</div>
+			<input id="f1f" type="range" value="0" min="-100" max="100" oninput="draw()"/>
+		</td>
+	</tr>
+	<tr>
+		<td>f2</td>
+		<td>
+			<div id="f2aV">0.85</div>
+			<input id="f2a" type="range" value="85" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f2bV">0.04</div>
+			<input id="f2b" type="range" value="4" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f2cV">-0.04</div>
+			<input id="f2c" type="range" value="-4" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f2dV">0.85</div>
+			<input id="f2d" type="range" value="85" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f2fV">1.6</div>
+			<input id="f2f" type="range" value="16" min="-100" max="100" oninput="draw()"/>
+		</td>
+	</tr>
+	<tr>
+		<td>f3</td>
+		<td>
+			<div id="f3aV">0.2</div>
+			<input id="f3a" type="range" value="20" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f3bV">-0.26</div>
+			<input id="f3b" type="range" value="-26" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f3cV">0.23</div>
+			<input id="f3c" type="range" value="23" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f3dV">0.22</div>
+			<input id="f3d" type="range" value="22" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f3fV">1.6</div>
+			<input id="f3f" type="range" value="16" min="-100" max="100" oninput="draw()"/>
+		</td>
+	</tr>
+	<tr>
+		<td>f4</td>
+		<td>
+			<div id="f4aV">-0.15</div>
+			<input id="f4a" type="range" value="-15" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f4bV">0.28</div>
+			<input id="f4b" type="range" value="28" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f4cV">0.26</div>
+			<input id="f4c" type="range" value="26" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f4dV">0.24</div>
+			<input id="f4d" type="range" value="24" min="-100" max="100" oninput="draw()"/>
+		</td>
+		<td>
+			<div id="f4fV">0.44</div>
+			<input id="f4f" type="range" value="4.4" min="-100" max="100" oninput="draw()"/>
+		</td>
+	</tr>
+   </table>
+  <canvas id="myCanvas" width="600" height="600">
+  <script>
+	{ //Selectors
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		var random;
+		var f1aV = document.getElementById("f1aV");
+		var f1a = document.getElementById("f1a");
+		var f1bV = document.getElementById("f1bV");
+		var f1b = document.getElementById("f1b");
+		var f1cV = document.getElementById("f1cV");
+		var f1c = document.getElementById("f1c");
+		var f1dV = document.getElementById("f1dV");
+		var f1d = document.getElementById("f1d");
+		var f1fV = document.getElementById("f1fV");
+		var f1f = document.getElementById("f1f");
+		var f2aV = document.getElementById("f2aV");
+		var f2a = document.getElementById("f2a");
+		var f2bV = document.getElementById("f2bV");
+		var f2b = document.getElementById("f2b");
+		var f2cV = document.getElementById("f2cV");
+		var f2c = document.getElementById("f2c");
+		var f2dV = document.getElementById("f2dV");
+		var f2d = document.getElementById("f2d");
+		var f2fV = document.getElementById("f2fV");
+		var f2f = document.getElementById("f2f");
+		var f3aV = document.getElementById("f3aV");
+		var f3a = document.getElementById("f3a");
+		var f3bV = document.getElementById("f3bV");
+		var f3b = document.getElementById("f3b");
+		var f3cV = document.getElementById("f3cV");
+		var f3c = document.getElementById("f3c");
+		var f3dV = document.getElementById("f3dV");
+		var f3d = document.getElementById("f3d");
+		var f3fV = document.getElementById("f3fV");
+		var f3f = document.getElementById("f3f");
+		var f4aV = document.getElementById("f4aV");
+		var f4a = document.getElementById("f4a");
+		var f4bV = document.getElementById("f4bV");
+		var f4b = document.getElementById("f4b");
+		var f4cV = document.getElementById("f4cV");
+		var f4c = document.getElementById("f4c");
+		var f4dV = document.getElementById("f4dV");
+		var f4d = document.getElementById("f4d");
+		var f4fV = document.getElementById("f4fV");
+		var f4f = document.getElementById("f4f");
+	}
+	draw();
+	function draw(){
+		var x = 0;
+		var y = 0;
+		var count  = 1;
+		{ //Writers
+			f1aV.innerHTML = f1a.value/100.0;
+			f1bV.innerHTML = f1b.value/100.0;
+			f1cV.innerHTML = f1c.value/100.0;
+			f1dV.innerHTML = f1d.value/100.0;
+			f1fV.innerHTML = f1f.value/10.0;
+			f2aV.innerHTML = f2a.value/100.0;
+			f2bV.innerHTML = f2b.value/100.0;
+			f2cV.innerHTML = f2c.value/100.0;
+			f2dV.innerHTML = f2d.value/100.0;
+			f2fV.innerHTML = f2f.value/10.0;
+			f3aV.innerHTML = f3a.value/100.0;
+			f3bV.innerHTML = f3b.value/100.0;
+			f3cV.innerHTML = f3c.value/100.0;
+			f3dV.innerHTML = f3d.value/100.0;
+			f3fV.innerHTML = f3f.value/10.0;
+			f4aV.innerHTML = f4a.value/100.0;
+			f4bV.innerHTML = f4b.value/100.0;
+			f4cV.innerHTML = f4c.value/100.0;
+			f4dV.innerHTML = f4d.value/100.0;
+			f4fV.innerHTML = f4f.value/10.0;
+		}
+		ctx.clearRect(0, 0, c.width, c.height);
+		for (var i = 0; i < 10000; i++) {
+			ctx.fillStyle="rgb(0,255,0)";
+			ctx.fillRect(50 * x + 300, 600 - 50 * y, 1, 1);
+			random = Math.random();
+			if (random <= 0.01) {
+				x = parseFloat(f1aV.innerHTML) + parseFloat(f1bV.innerHTML) * y;
+				y = parseFloat(f1cV.innerHTML) * x + parseFloat(f1dV.innerHTML) * y + parseFloat(f1fV.innerHTML);
+			} else if (random <= 0.85) {
+				x = parseFloat(f2aV.innerHTML) * x + parseFloat(f2bV.innerHTML) * y;
+				y = parseFloat(f2cV.innerHTML) * x + parseFloat(f2dV.innerHTML) * y + parseFloat(f2fV.innerHTML);
+			} else if (random <= 0.92) {
+				x = parseFloat(f3aV.innerHTML) * x + parseFloat(f3bV.innerHTML) * y;
+				y = parseFloat(f3cV.innerHTML) * x + parseFloat(f3dV.innerHTML) * y + parseFloat(f3fV.innerHTML);
+			} else {
+				x = parseFloat(f4aV.innerHTML) * x + parseFloat(f4bV.innerHTML) * y;
+				y = parseFloat(f4cV.innerHTML) * x + parseFloat(f4dV.innerHTML) * y + parseFloat(f4fV.innerHTML);
+			}
+		}
+	} 
+  </script>
+</body>
+</html>
