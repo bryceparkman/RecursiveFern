@@ -111,77 +111,47 @@
    </table>
   <canvas id="myCanvas" width="600" height="600">
   <script>
-	{ //Selectors
+  		function createArray(length) {
+			var arr = new Array(length || 0),
+				i = length;
+
+			if (arguments.length > 1) {
+				var args = Array.prototype.slice.call(arguments, 1);
+				while(i--) arr[length-1 - i] = createArray.apply(this, args);
+			}
+    		return arr;
+		}
+	
 		var c = document.getElementById("myCanvas");
 		var ctx = c.getContext("2d");
 		var random;
-		var f1aV = document.getElementById("f1aV");
-		var f1a = document.getElementById("f1a");
-		var f1bV = document.getElementById("f1bV");
-		var f1b = document.getElementById("f1b");
-		var f1cV = document.getElementById("f1cV");
-		var f1c = document.getElementById("f1c");
-		var f1dV = document.getElementById("f1dV");
-		var f1d = document.getElementById("f1d");
-		var f1fV = document.getElementById("f1fV");
-		var f1f = document.getElementById("f1f");
-		var f2aV = document.getElementById("f2aV");
-		var f2a = document.getElementById("f2a");
-		var f2bV = document.getElementById("f2bV");
-		var f2b = document.getElementById("f2b");
-		var f2cV = document.getElementById("f2cV");
-		var f2c = document.getElementById("f2c");
-		var f2dV = document.getElementById("f2dV");
-		var f2d = document.getElementById("f2d");
-		var f2fV = document.getElementById("f2fV");
-		var f2f = document.getElementById("f2f");
-		var f3aV = document.getElementById("f3aV");
-		var f3a = document.getElementById("f3a");
-		var f3bV = document.getElementById("f3bV");
-		var f3b = document.getElementById("f3b");
-		var f3cV = document.getElementById("f3cV");
-		var f3c = document.getElementById("f3c");
-		var f3dV = document.getElementById("f3dV");
-		var f3d = document.getElementById("f3d");
-		var f3fV = document.getElementById("f3fV");
-		var f3f = document.getElementById("f3f");
-		var f4aV = document.getElementById("f4aV");
-		var f4a = document.getElementById("f4a");
-		var f4bV = document.getElementById("f4bV");
-		var f4b = document.getElementById("f4b");
-		var f4cV = document.getElementById("f4cV");
-		var f4c = document.getElementById("f4c");
-		var f4dV = document.getElementById("f4dV");
-		var f4d = document.getElementById("f4d");
-		var f4fV = document.getElementById("f4fV");
-		var f4f = document.getElementById("f4f");
-	}
+		var cha;
+		var list = [[],[]];
+		var str;
+		var str2;
+		var extra = 0;
+		for(var i=0;i<20;i++){
+			if(i > 15) extra = 1;
+			cha = String.fromCharCode(i/4+97+extra);
+			str = "f" + ((i%4)+1) + cha + "V";
+			str2 =  "f" + ((i%4)+1) + cha;
+			list[0][i] = document.getElementById(str);
+			list[1][i] = document.getElementById(str2);
+		}
 	draw();
 	function draw(){
 		var x = 0;
 		var y = 0;
 		var count  = 1;
-		{ //Writers
-			f1aV.innerHTML = f1a.value/100.0;
-			f1bV.innerHTML = f1b.value/100.0;
-			f1cV.innerHTML = f1c.value/100.0;
-			f1dV.innerHTML = f1d.value/100.0;
-			f1fV.innerHTML = f1f.value/10.0;
-			f2aV.innerHTML = f2a.value/100.0;
-			f2bV.innerHTML = f2b.value/100.0;
-			f2cV.innerHTML = f2c.value/100.0;
-			f2dV.innerHTML = f2d.value/100.0;
-			f2fV.innerHTML = f2f.value/10.0;
-			f3aV.innerHTML = f3a.value/100.0;
-			f3bV.innerHTML = f3b.value/100.0;
-			f3cV.innerHTML = f3c.value/100.0;
-			f3dV.innerHTML = f3d.value/100.0;
-			f3fV.innerHTML = f3f.value/10.0;
-			f4aV.innerHTML = f4a.value/100.0;
-			f4bV.innerHTML = f4b.value/100.0;
-			f4cV.innerHTML = f4c.value/100.0;
-			f4dV.innerHTML = f4d.value/100.0;
-			f4fV.innerHTML = f4f.value/10.0;
+		var v;
+		for(var j=0;j<20;j++){
+			if(j>15){
+				v = 10.0;
+			}
+			else {
+				v = 100.0;
+			}
+			list[0][j].innerHTML = list[1][j].value/v;
 		}
 		ctx.clearRect(0, 0, c.width, c.height);
 		for (var i = 0; i < 10000; i++) {
@@ -189,17 +159,17 @@
 			ctx.fillRect(50 * x + 300, 600 - 50 * y, 1, 1);
 			random = Math.random();
 			if (random <= 0.01) {
-				x = parseFloat(f1aV.innerHTML) + parseFloat(f1bV.innerHTML) * y;
-				y = parseFloat(f1cV.innerHTML) * x + parseFloat(f1dV.innerHTML) * y + parseFloat(f1fV.innerHTML);
+				x = parseFloat(list[0][0].innerHTML) + parseFloat(list[0][4].innerHTML) * y;
+				y = parseFloat(list[0][8].innerHTML) * x + parseFloat(list[0][12].innerHTML) * y + parseFloat(list[0][16].innerHTML);
 			} else if (random <= 0.85) {
-				x = parseFloat(f2aV.innerHTML) * x + parseFloat(f2bV.innerHTML) * y;
-				y = parseFloat(f2cV.innerHTML) * x + parseFloat(f2dV.innerHTML) * y + parseFloat(f2fV.innerHTML);
+				x = parseFloat(list[0][1].innerHTML) * x + parseFloat(list[0][5].innerHTML) * y;
+				y = parseFloat(list[0][9].innerHTML) * x + parseFloat(list[0][13].innerHTML) * y + parseFloat(list[0][17].innerHTML);
 			} else if (random <= 0.92) {
-				x = parseFloat(f3aV.innerHTML) * x + parseFloat(f3bV.innerHTML) * y;
-				y = parseFloat(f3cV.innerHTML) * x + parseFloat(f3dV.innerHTML) * y + parseFloat(f3fV.innerHTML);
+				x = parseFloat(list[0][2].innerHTML) * x + parseFloat(list[0][6].innerHTML) * y;
+				y = parseFloat(list[0][10].innerHTML) * x + parseFloat(list[0][14].innerHTML) * y + parseFloat(list[0][18].innerHTML);
 			} else {
-				x = parseFloat(f4aV.innerHTML) * x + parseFloat(f4bV.innerHTML) * y;
-				y = parseFloat(f4cV.innerHTML) * x + parseFloat(f4dV.innerHTML) * y + parseFloat(f4fV.innerHTML);
+				x = parseFloat(list[0][3].innerHTML) * x + parseFloat(list[0][7].innerHTML) * y;
+				y = parseFloat(list[0][11].innerHTML) * x + parseFloat(list[0][15].innerHTML) * y + parseFloat(list[0][19].innerHTML);
 			}
 		}
 	} 
